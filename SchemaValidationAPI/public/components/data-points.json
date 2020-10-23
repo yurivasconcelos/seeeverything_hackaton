@@ -1,0 +1,28 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema",
+    "$id": "http://example.com/example.json",
+    "definitions": {
+      "data-points": {
+        "type": "array",
+        "title": "data-points schema",
+        "description": "This is an explanation about data-points",
+        "default": {},
+        "items": {
+          "type": "object",
+          "required": ["key"],
+          "properties": {
+            "key": {
+              "description": "please input a key here",
+              "type": "string"
+            },
+            "entity-property": {
+                "description": "please input an entityProperty here",
+                "type": "number"
+            },
+            "filters": { "$ref": "filters.json#/definitions/filters" }
+          }
+        }
+      }
+    }
+  }
+  

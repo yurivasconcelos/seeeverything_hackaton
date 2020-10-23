@@ -1,0 +1,554 @@
+- section:
+    title: Coaching Summary
+    icon: team
+    level: h1
+    id: section.coaching-summary
+- grid-tools:
+    id: team.grid-tools.coaching-summary
+    group: coaching-summary
+    tools:
+      - id: team.grid-tools.coaching-summary.teams
+        grid-id: team.grid.coaching-summary.teams
+        group: coaching-summary
+        icon: team
+        label: Teams
+        is-default: true
+        fallback-grid-tool-id: team.grid-tools.coaching-summary.people
+      - id: team.grid-tools.coaching-summary.people
+        grid-id: team.grid.coaching-summary.people
+        group: coaching-summary
+        icon: face
+        label: People
+        is-default: false
+      - id: team.grid-tools.coaching-summary.assignedto
+        grid-id: team.grid.coaching-summary.assignedto
+        group: coaching-summary
+        icon: face
+        label: Coach
+        is-default: false
+- grid:
+    id: team.grid.coaching-summary.teams
+    data-set: team.grid.coaching-summary.teams
+    name: Coaching Summary (Teams)
+    group: coaching-summary
+    default-sort-order:
+      id: team
+      direction: Ascending
+    row-style:
+      tags:
+        - id: TeamDeactivated
+          style: deemphasized
+    header-groups:
+      - group-id: One on One Coaching
+        scroll-to-id: section.one-on-one-coaching
+      - group-id: Observations
+        scroll-to-id: section.observation-coaching
+      - group-id: Goals
+        scroll-to-id: section.goals-and-actions
+      - group-id: Actions
+        scroll-to-id: section.goals-and-actions
+    columns:
+      - id: team
+        label: Team
+        width: 2*
+        border-right: true
+        is-sortable: true
+        is-filterable: false
+        can-launch: true
+      - id: one-on-one.sessions-per-team-member
+        label: Sessions per Team Member
+        width: "1*"
+        border-right: false
+        is-sortable: true
+        is-filterable: false
+        group: One on One Coaching
+        align: center
+        type: NUMBER
+        precision: 1
+        trend-map:
+          - icon: dot
+            color: "#C5C5C5"
+            label: No Change
+            min-number-inclusive: 0
+            max-number-inclusive: 0
+          - icon: arrowDropDown
+            color: "#737373"
+            label: Trending Down
+            min-number-inclusive: -999999
+            max-number: 0
+          - icon: arrowDropUp
+            color: "#207BB8"
+            label: Trending Up
+            min-number: 0
+            max-number-inclusive: 999999
+      - id: one-on-one.staff-coached-percent
+        label: Staff Coached %
+        width: "1*"
+        border-right: true
+        is-sortable: true
+        is-filterable: false
+        group: One on One Coaching
+        align: center
+        type: NUMBER
+        format: PERCENTAGE
+        precision: 0
+        trend-map:
+          - icon: dot
+            color: "#C5C5C5"
+            label: No Change
+            min-number-inclusive: 0
+            max-number-inclusive: 0
+          - icon: arrowDropDown
+            color: "#737373"
+            label: Trending Down
+            min-number-inclusive: -100
+            max-number: 0
+          - icon: arrowDropUp
+            color: "#207BB8"
+            label: Trending Up
+            min-number: 0
+            max-number-inclusive: 100
+      - id: observations.observations-per-team-member
+        label: Observations per Team Member
+        width: "1*"
+        border-right: false
+        is-sortable: true
+        is-filterable: false
+        group: Observations
+        align: center
+        type: NUMBER
+        precision: 1
+        trend-map:
+          - icon: dot
+            color: "#C5C5C5"
+            label: No Change
+            min-number-inclusive: 0
+            max-number-inclusive: 0
+          - icon: arrowDropDown
+            color: "#737373"
+            label: Trending Down
+            min-number-inclusive: -999999
+            max-number: 0
+          - icon: arrowDropUp
+            color: "#207BB8"
+            label: Trending Up
+            min-number: 0
+            max-number-inclusive: 999999
+      - id: observations.staff-observed-percent
+        label: Staff Observed %
+        width: "1*"
+        border-right: true
+        is-sortable: true
+        is-filterable: false
+        group: Observations
+        align: center
+        type: NUMBER
+        format: PERCENTAGE
+        precision: 0
+        trend-map:
+          - icon: dot
+            color: "#C5C5C5"
+            label: No Change
+            min-number-inclusive: 0
+            max-number-inclusive: 0
+          - icon: arrowDropDown
+            color: "#737373"
+            label: Trending Down
+            min-number-inclusive: -100
+            max-number: 0
+          - icon: arrowDropUp
+            color: "#207BB8"
+            label: Trending Up
+            min-number: 0
+            max-number-inclusive: 100
+      - id: goals.within-due-date
+        label: Within Due Date
+        width: "*"
+        border-right: false
+        is-sortable: true
+        is-filterable: false
+        group: Goals
+        align: center
+        type: NUMBER
+        format: PERCENTAGE
+        precision: 0
+        trend-map:
+          - icon: dot
+            color: "#C5C5C5"
+            label: No Change
+            min-number-inclusive: 0
+            max-number-inclusive: 0
+          - icon: arrowDropDown
+            color: "#737373"
+            label: Trending Down
+            min-number-inclusive: -100
+            max-number: 0
+          - icon: arrowDropUp
+            color: "#207BB8"
+            label: Trending Up
+            min-number: 0
+            max-number-inclusive: 100
+      - id: actions.within-due-date
+        label: Within Due Date
+        width: "*"
+        border-right: true
+        is-sortable: true
+        is-filterable: false
+        group: Actions
+        align: center
+        type: NUMBER
+        format: PERCENTAGE
+        precision: 0
+        trend-map:
+          - icon: dot
+            color: "#C5C5C5"
+            label: No Change
+            min-number-inclusive: 0
+            max-number-inclusive: 0
+          - icon: arrowDropDown
+            color: "#737373"
+            label: Trending Down
+            min-number-inclusive: -100
+            max-number: 0
+          - icon: arrowDropUp
+            color: "#207BB8"
+            label: Trending Up
+            min-number: 0
+            max-number-inclusive: 100
+- grid:
+    id: team.grid.coaching-summary.people
+    data-set: team.grid.coaching-summary.people
+    name: Coaching Summary (People)
+    group: coaching-summary
+    default-sort-order:
+      - id: person.membership-exists
+        direction: Descending
+      - id: person
+        direction: Ascending
+    row-style:
+      tags:
+        - id: MembershipRemoved
+          style: deemphasized
+    columns:
+      - id: person
+        label: Person
+        width: 2*
+        border-right: true
+        is-sortable: true
+        is-filterable: false
+        can-launch: true
+      - id: sessions.overdue
+        label: Overdue
+        width: "*"
+        border-right: false
+        is-sortable: true
+        is-filterable: false
+        group: Sessions
+        align: center
+        type: NUMBER
+        click-through:
+          grid-id: default.grid.sessions
+        content-map:
+          - bg-color: "rgba(249, 194, 101, 0.25)"
+            min-number-inclusive: 1
+            max-number-inclusive: 2147483647
+      - id: sessions.in-progress
+        label: In Progress
+        width: "*"
+        border-right: false
+        is-sortable: true
+        is-filterable: false
+        group: Sessions
+        align: center
+        type: NUMBER
+        click-through:
+          grid-id: default.grid.sessions
+      - id: sessions.pending
+        label: Pending
+        width: "*"
+        border-right: false
+        is-sortable: true
+        is-filterable: false
+        group: Sessions
+        align: center
+        type: NUMBER
+        click-through:
+          grid-id: default.grid.sessions
+      - id: sessions.completed
+        label: Completed
+        width: "*"
+        border-right: true
+        is-sortable: true
+        is-filterable: false
+        group: Sessions
+        align: center
+        type: NUMBER
+        click-through:
+          grid-id: default.grid.sessions
+      - id: goals.overdue
+        label: Overdue
+        width: "*"
+        border-right: false
+        is-sortable: true
+        is-filterable: false
+        type: NUMBER
+        align: center
+        group: Goals
+        click-through:
+          grid-id: default.grid.goals-and-actions
+          type: GOALS_AND_ACTIONS
+        content-map:
+          - bg-color: "rgba(249, 194, 101, 0.25)"
+            min-number-inclusive: 1
+            max-number-inclusive: 2147483647
+      - id: goals.open
+        label: Open
+        width: "*"
+        border-right: false
+        is-sortable: true
+        is-filterable: false
+        type: NUMBER
+        align: center
+        group: Goals
+        click-through:
+          grid-id: default.grid.goals-and-actions
+          type: GOALS_AND_ACTIONS
+      - id: goals.completed
+        label: Completed
+        width: "*"
+        border-right: true
+        is-sortable: true
+        is-filterable: false
+        type: NUMBER
+        align: center
+        group: Goals
+        click-through:
+          grid-id: default.grid.goals-and-actions
+          type: GOALS_AND_ACTIONS
+      - id: actions.overdue
+        label: Overdue
+        width: "*"
+        border-right: false
+        is-sortable: true
+        is-filterable: false
+        type: NUMBER
+        align: center
+        group: Actions
+        click-through:
+          grid-id: default.grid.actions
+          type: GOALS_AND_ACTIONS
+        content-map:
+          - bg-color: "rgba(249, 194, 101, 0.25)"
+            min-number-inclusive: 1
+            max-number-inclusive: 2147483647
+      - id: actions.open
+        label: Open
+        width: "*"
+        border-right: false
+        is-sortable: true
+        is-filterable: false
+        type: NUMBER
+        align: center
+        group: Actions
+        click-through:
+          grid-id: default.grid.actions
+          type: GOALS_AND_ACTIONS
+      - id: actions.completed
+        label: Completed
+        width: "*"
+        border-right: true
+        is-sortable: true
+        is-filterable: false
+        type: NUMBER
+        align: center
+        group: Actions
+        click-through:
+          grid-id: default.grid.actions
+          type: GOALS_AND_ACTIONS
+      - id: person.membership-exists
+        width: "*"
+        is-hidden: true
+        is-sortable: true
+- grid:
+    id: team.grid.coaching-summary.assignedto
+    data-set: team.grid.coaching-summary.assignedto
+    name: Coaching Summary (Coaches)
+    group: coaching-summary
+    default-sort-order:
+      - id: person
+        direction: Ascending
+    columns:
+      - id: person
+        label: Person
+        width: 2*
+        border-right: true
+        is-sortable: true
+        is-filterable: false
+        can-launch: true
+      - id: sessions.overdue
+        label: Overdue
+        width: "*"
+        border-right: false
+        is-sortable: true
+        is-filterable: false
+        group: Sessions
+        align: center
+        type: NUMBER
+        click-through:
+          grid-id: default.grid.sessions
+        content-map:
+          - bg-color: "rgba(249, 194, 101, 0.25)"
+            min-number-inclusive: 1
+            max-number-inclusive: 2147483647
+      - id: sessions.in-progress
+        label: In Progress
+        width: "*"
+        border-right: false
+        is-sortable: true
+        is-filterable: false
+        group: Sessions
+        align: center
+        type: NUMBER
+        click-through:
+          grid-id: default.grid.sessions
+      - id: sessions.pending
+        label: Pending
+        width: "*"
+        border-right: false
+        is-sortable: true
+        is-filterable: false
+        group: Sessions
+        align: center
+        type: NUMBER
+        click-through:
+          grid-id: default.grid.sessions
+      - id: sessions.completed
+        label: Completed
+        width: "*"
+        border-right: true
+        is-sortable: true
+        is-filterable: false
+        group: Sessions
+        align: center
+        type: NUMBER
+        click-through:
+          grid-id: default.grid.sessions
+- data-outputs:
+    - id: team.grid.coaching-summary.teams
+      dashboard-summary-type: children
+      dashboard-summary-calculation-type: sum
+      data-points:
+        - key: team
+          entity-property: entityName
+        - key: one-on-one.sessions-per-team-member
+          calculated-property:
+            operands:
+              - entity-property: statsInstancesCompleted
+              - entity-property: statsTotalMembers
+            operator: divide
+          filters:
+            - field: statsCategoryName
+              value: "One on One"
+              query: must
+          comparison-period: adjacentPrevious
+        - key: one-on-one.staff-coached-percent
+          calculated-property:
+            operands:
+              - operands:
+                  - entity-property: statsSubjectsWithCompleted
+                  - entity-property: statsTotalMembers
+                operator: multiply
+              - constant: 100
+            operator: multiply
+          filters:
+            - field: statsCategoryName
+              value: "One on One"
+              query: must
+          comparison-period: adjacentPrevious
+        - key: observations.observations-per-team-member
+          calculated-property:
+            operands:
+              - entity-property: statsInstancesCompleted
+              - entity-property: statsTotalMembers
+            operator: divide
+          filters:
+            - field: statsCategoryName
+              value: "Observations"
+              query: must
+          comparison-period: adjacentPrevious
+        - key: observations.staff-observed-percent
+          calculated-property:
+            operands:
+              - operands:
+                  - entity-property: statsSubjectsWithCompleted
+                  - entity-property: statsTotalMembers
+                operator: divide
+              - constant: 100
+            operator: multiply
+          filters:
+            - field: statsCategoryName
+              value: "Observations"
+              query: must
+          comparison-period: adjacentPrevious
+        - key: actions.within-due-date
+          calculated-property:
+            operands:
+              - operands:
+                  - entity-property: statsActionsCompletedWithinDate
+                  - entity-property: statsActionsTotal
+                operator: divide
+              - constant: 100
+            operator: multiply
+          comparison-period: adjacentPrevious
+        - key: goals.within-due-date
+          calculated-property:
+            operands:
+              - operands:
+                  - entity-property: statsGoalsCompletedWithinDate
+                  - entity-property: statsGoalsTotal
+                operator: divide
+              - constant: 100
+            operator: multiply
+          comparison-period: adjacentPrevious
+    - id: team.grid.coaching-summary.people
+      dashboard-summary-type: members
+      dashboard-summary-calculation-type: sum
+      data-points:
+        - key: person
+          entity-property: entityName
+        - key: sessions.completed
+          entity-property: statsInstancesCompleted
+        - key: sessions.in-progress
+          entity-property: statsInstancesOpen
+        - key: sessions.pending
+          entity-property: statsInstancesPending
+        - key: sessions.overdue
+          entity-property: statsInstancesOverdue
+        - key: goals.completed
+          entity-property: statsGoalsCompleted
+        - key: goals.open
+          entity-property: statsGoalsOpen
+        - key: goals.overdue
+          entity-property: statsGoalsOverdue
+        - key: actions.completed
+          entity-property: statsActionsCompleted
+        - key: actions.open
+          entity-property: statsActionsOpen
+        - key: actions.overdue
+          entity-property: statsActionsOverdue
+        - key: person.membership-exists
+          entity-property: membershipExists
+    - id: team.grid.coaching-summary.assignedto
+      dashboard-summary-type: coaches
+      dashboard-summary-calculation-type: sum
+      data-points:
+        - key: person
+          entity-property: entityName
+        - key: sessions.completed
+          entity-property: statsInstancesCompleted
+        - key: sessions.in-progress
+          entity-property: statsInstancesOpen
+        - key: sessions.pending
+          entity-property: statsInstancesPending
+        - key: sessions.overdue
+          entity-property: statsInstancesOverdue

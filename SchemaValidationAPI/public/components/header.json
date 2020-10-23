@@ -1,0 +1,21 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema",
+  "$id": "http://example.com/example.json",
+  "definitions": {
+    "header": {
+      "type": "object",
+      "title": "The header schema",
+      "description": "An explanation about the purpose of this instance.",
+      "default": {},
+      "required": ["icon"],
+      "properties": {
+        "icon": { "$ref": "icon.json#/definitions/icon" },
+        "date-filters": {
+          "$ref": "date-filters.json#/definitions/date-filters"
+        },
+        "metrics": { "$ref": "metrics.json#/definitions/metrics" }
+      },
+      "additionalItems": true
+    }
+  }
+}

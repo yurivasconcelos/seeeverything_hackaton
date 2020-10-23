@@ -1,0 +1,30 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema",
+  "$id": "http://example.com/example.json",
+  "definitions": {
+    "metrics": {
+      "type": "array",
+      "title": "metrics schema",
+      "description": "This is an explanation about date-filters",
+      "default": {},
+      "items": {
+        "type": "object",
+        "properties": {
+          "label": {
+            "description": "please input a label here",
+            "type": "string"
+          },
+          "icon": { "$ref": "icon.json#/definitions/icon" },
+          "data-key": {
+            "description": "hey data-key",
+            "type": "string"
+          },
+          "value-formatter": {
+            "type": "string",
+            "description": "this is value-formatter"
+          }
+        }
+      }
+    }
+  }
+}

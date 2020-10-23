@@ -1,0 +1,164 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "title": "DashboardSectionDto",
+  "type": "array",
+  "additionalProperties": false,
+  "properties": {
+    "id": { "type": ["null", "string"] },
+    "dashboard-summary-type": { "$ref": "#/definitions/DashboardSummaryType" },
+    "dashboard-relation-type": {
+      "oneOf": [
+        { "type": "null" },
+        { "$ref": "#/definitions/DashboardRelationType" }
+      ]
+    },
+    "dashboard-summary-calculation-type": {
+      "$ref": "#/definitions/DashboardSummaryCalculationType"
+    },
+    "data-points": {
+      "type": ["array", "null"],
+      "items": { "$ref": "#/definitions/DashboardDataPointDto" }
+    },
+    "exclude-empty-results": { "type": "boolean" },
+    "filters": {
+      "type": ["array", "null"],
+      "items": { "$ref": "#/definitions/DashboardFilterItemDto" }
+    },
+    "form-answers": {
+      "type": ["array", "null"],
+      "items": { "$ref": "#/definitions/DashboardFormAnswerDto" }
+    }
+  },
+  "definitions": {
+    "DashboardSummaryType": {
+      "type": "integer",
+      "description": "",
+      "enum": [
+        "category",
+        "children",
+        "childrenOrMembersWhenNoChildren",
+        "entity",
+        "entityAndDirectChildren",
+        "entityHeader",
+        "formInstance",
+        "members",
+        "formAction",
+        "formGoal",
+        "formGoalAndAction",
+        "coaches",
+        "teams",
+        "timeSeries",
+        "formAnswer"
+      ]
+    },
+    "DashboardRelationType": {
+      "type": "integer",
+      "description": "",
+      "enum": [
+        "subject",
+        "assignedTo",
+        "subjectOrAssignedTo",
+        "childTeamSubject",
+        "personTeam",
+        "creator"
+      ]
+    },
+    "DashboardSummaryCalculationType": {
+      "type": "integer",
+      "description": "",
+      "enum": ["dateHistogram", "none", "sum", "sumOverlap"]
+    },
+    "DashboardDataPointDto": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "key": { "type": ["null", "string"] },
+        "entity-property": { "type": ["null", "string"] },
+        "calculation-type": {
+          "oneOf": [
+            { "type": "null" },
+            { "$ref": "#/definitions/DashboardDataPointCalculationType" }
+          ]
+        },
+        "target-values": { "oneOf": [{}, { "type": "null" }] },
+        "filters": {
+          "type": ["array", "null"],
+          "items": { "$ref": "#/definitions/DashboardFilterItemDto" }
+        },
+        "comparison-period": {
+          "oneOf": [
+            { "type": "null" },
+            { "$ref": "#/definitions/DashboardDataPointComparisonPeriod" }
+          ]
+        },
+        "include-children": { "type": "boolean" },
+        "nested-type": { "type": ["null", "string"] },
+        "max-returned-children": {
+          "type": ["integer", "null"],
+          "format": "int32"
+        },
+        "calculated-property": {
+          "oneOf": [
+            { "type": "null" },
+            { "$ref": "#/definitions/DashboardCalculatedDataPointDto" }
+          ]
+        },
+        "external-data-set": { "type": ["null", "string"] }
+      }
+    },
+    "DashboardDataPointCalculationType": {
+      "type": "integer",
+      "description": "",
+      "enum": ["none", "sum", "average", "count", "percentage"]
+    },
+    "DashboardFilterItemDto": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "field": { "type": ["null", "string"] },
+        "value": { "oneOf": [{}, { "type": "null" }] },
+        "type": { "type": ["null", "string"] },
+        "query": { "type": ["null", "string"] }
+      }
+    },
+    "DashboardDataPointComparisonPeriod": {
+      "type": "integer",
+      "description": "",
+      "enum": ["none", "adjacentPrevious"]
+    },
+    "DashboardCalculatedDataPointDto": {
+      "allOf": [
+        { "$ref": "#/definitions/DashboardDataPointDto" },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "operands": {
+              "type": ["array", "null"],
+              "items": {
+                "$ref": "#/definitions/DashboardCalculatedDataPointDto"
+              }
+            },
+            "constant": { "type": ["null", "number"], "format": "decimal" },
+            "operator": {
+              "oneOf": [
+                { "type": "null" },
+                { "$ref": "#/definitions/DashboardCalculatedDataPointOperator" }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    "DashboardCalculatedDataPointOperator": {
+      "type": "integer",
+      "description": "",
+      "enum": ["add", "subtract", "divide", "multiply"]
+    },
+    "DashboardFormAnswerDto": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": { "Key": { "type": ["null", "string"] } }
+    }
+  }
+}

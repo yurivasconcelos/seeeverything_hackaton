@@ -1,0 +1,40 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema",
+  "$id": "http://example.com/example.json",
+  "definitions": {
+    "date-filters": {
+      "type": "array",
+      "title": "date-filters schema",
+      "description": "This is an explanation about date-filters",
+      "default": {},
+      "items": {
+        "type": "object",
+        "properties": {
+          "label": {
+            "description": "please input a label here",
+            "type": "string"
+          },
+          "period": {
+              "description": "this is a period",
+              "type": "string",
+              "enum": ["Month", "Week", "Day"]
+          },
+          "amount": {
+            "description": "please input a number here",
+            "type": "number"
+          },
+          "is-default": {
+              "description": "sets the default value for this..",
+              "type": "boolean"
+          },
+          "kind": {
+              "description": "type of header you want..",
+              "type": "string",
+              "enum": ["TODAY_BACKWARDS", "TODAY_ONWARDS", "REPEATING_FREQUENCY", "CUSTOM_RANGE"]
+            }
+        }
+      },
+      "required": ["label"]
+    }
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema",
+  "$id": "http://example.com/example.json",
+  "type": "array",
+  "items": {
+    "$id": "#/items",
+    "anyOf": [
+      {
+        "$id": "#/items/anyOf/0",
+        "type": "object",
+        "title": "The first anyOf schema",
+        "description": "Header",
+        "default": {},
+        "additionalItems": true,
+        "properties": {
+          "header": {
+            "$ref": "components/header.json#/definitions/header"
+          },
+          "data-outputs": {
+            "$ref": "components/data-outputs.json#/definitions/data-outputs"
+          }
+        }
+      }
+    ],
+    "additionalItems": true
+  }
+}
