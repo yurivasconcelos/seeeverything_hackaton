@@ -1,6 +1,6 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema",
-  "$id": "http://example.com/example.json",
+  "$id": "dashboard-template-validator",
   "type": "array",
   "items": {
     "$id": "#/items",
@@ -17,7 +17,7 @@
             "$ref": "public/components/header.json#/definitions/header"
           },
           "data-outputs": {
-            "$ref": "public/components/data-outputs.json#/definitions/data-outputs"
+            "$ref": "http://localhost:8000/dataoutputs#/definitions/data-outputs"
           }
         }
       }
