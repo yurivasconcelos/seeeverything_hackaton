@@ -1,0 +1,18 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "title": "DashboardSectionDto",
+  "type": "object",
+  "additionalProperties": false,
+  "definitions": {
+    "data-outputs": {
+      "type": "array",
+      "title": "data-output schema",
+      "description": "This is an explanation about data-output",
+      "default": {},
+      "items": {
+        "type": "object",
+        "properties": {}
+      }
+    }
+  }
+}

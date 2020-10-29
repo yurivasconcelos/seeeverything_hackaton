@@ -12,14 +12,17 @@
       "items": {
         "type": "object",
         "properties": {
-          "id": { "type": ["null", "string"] },
           "dashboard-summary-type": {
             "$ref": "#/definitions/DashboardSummaryType"
           },
           "dashboard-relation-type": {
             "oneOf": [
-              { "type": "null" },
-              { "$ref": "#/definitions/DashboardRelationType" }
+              {
+                "type": "null"
+              },
+              {
+                "$ref": "#/definitions/DashboardRelationType"
+              }
             ]
           },
           "dashboard-summary-calculation-type": {
@@ -27,16 +30,24 @@
           },
           "data-points": {
             "type": ["array", "null"],
-            "items": { "$ref": "#/definitions/DashboardDataPointDto" }
+            "items": {
+              "$ref": "#/definitions/DashboardDataPointDto"
+            }
           },
-          "exclude-empty-results": { "type": "boolean" },
+          "exclude-empty-results": {
+            "type": "boolean"
+          },
           "filters": {
             "type": ["array", "null"],
-            "items": { "$ref": "#/definitions/DashboardFilterItemDto" }
+            "items": {
+              "$ref": "#/definitions/DashboardFilterItemDto"
+            }
           },
           "form-answers": {
             "type": ["array", "null"],
-            "items": { "$ref": "#/definitions/DashboardFormAnswerDto" }
+            "items": {
+              "$ref": "#/definitions/DashboardFormAnswerDto"
+            }
           }
         }
       }
@@ -83,38 +94,69 @@
       "type": "object",
       "additionalProperties": false,
       "properties": {
-        "key": { "type": ["null", "string"] },
-        "entity-property": { "type": ["null", "string"] },
+        "key": {
+          "type": ["null", "string"]
+        },
+        "entity-property": {
+          "type": ["null", "string"]
+        },
         "calculation-type": {
           "oneOf": [
-            { "type": "null" },
-            { "$ref": "#/definitions/DashboardDataPointCalculationType" }
+            {
+              "type": "null"
+            },
+            {
+              "$ref": "#/definitions/DashboardDataPointCalculationType"
+            }
           ]
         },
-        "target-values": { "oneOf": [{}, { "type": "null" }] },
+        "target-values": {
+          "oneOf": [
+            {},
+            {
+              "type": "null"
+            }
+          ]
+        },
         "filters": {
           "type": ["array", "null"],
-          "items": { "$ref": "#/definitions/DashboardFilterItemDto" }
+          "items": {
+            "$ref": "#/definitions/DashboardFilterItemDto"
+          }
         },
         "comparison-period": {
           "oneOf": [
-            { "type": "null" },
-            { "$ref": "#/definitions/DashboardDataPointComparisonPeriod" }
+            {
+              "type": "null"
+            },
+            {
+              "$ref": "#/definitions/DashboardDataPointComparisonPeriod"
+            }
           ]
         },
-        "include-children": { "type": "boolean" },
-        "nested-type": { "type": ["null", "string"] },
+        "include-children": {
+          "type": "boolean"
+        },
+        "nested-type": {
+          "type": ["null", "string"]
+        },
         "max-returned-children": {
           "type": ["integer", "null"],
           "format": "int32"
         },
         "calculated-property": {
           "oneOf": [
-            { "type": "null" },
-            { "$ref": "#/definitions/DashboardCalculatedDataPointDto" }
+            {
+              "type": "null"
+            },
+            {
+              "$ref": "#/definitions/DashboardCalculatedDataPointDto"
+            }
           ]
         },
-        "external-data-set": { "type": ["null", "string"] }
+        "external-data-set": {
+          "type": ["null", "string"]
+        }
       }
     },
     "DashboardDataPointCalculationType": {
@@ -126,10 +168,23 @@
       "type": "object",
       "additionalProperties": false,
       "properties": {
-        "field": { "type": ["null", "string"] },
-        "value": { "oneOf": [{}, { "type": "null" }] },
-        "type": { "type": ["null", "string"] },
-        "query": { "type": ["null", "string"] }
+        "field": {
+          "type": ["null", "string"]
+        },
+        "value": {
+          "oneOf": [
+            {},
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "type": {
+          "type": ["null", "string"]
+        },
+        "query": {
+          "type": ["null", "string"]
+        }
       }
     },
     "DashboardDataPointComparisonPeriod": {
@@ -138,8 +193,10 @@
       "enum": ["none", "adjacentPrevious"]
     },
     "DashboardCalculatedDataPointDto": {
-      "allOf": [
-        { "$ref": "#/definitions/DashboardDataPointDto" },
+      "oneOf": [
+        {
+          "$ref": "#/definitions/DashboardDataPointDto"
+        },
         {
           "type": "object",
           "additionalProperties": false,
@@ -150,11 +207,15 @@
                 "$ref": "#/definitions/DashboardCalculatedDataPointDto"
               }
             },
-            "constant": { "type": ["null", "number"], "format": "decimal" },
+            "constant": {
+              "type": ["null", "number"],
+              "format": "decimal"
+            },
             "operator": {
               "oneOf": [
-                { "type": "null" },
-                { "$ref": "#/definitions/DashboardCalculatedDataPointOperator" }
+                {
+                  "$ref": "#/definitions/DashboardCalculatedDataPointOperator"
+                }
               ]
             }
           }
@@ -163,13 +224,17 @@
     },
     "DashboardCalculatedDataPointOperator": {
       "type": "string",
-      "description": "",
+      "description": "this is my operator",
       "enum": ["add", "subtract", "divide", "multiply"]
     },
     "DashboardFormAnswerDto": {
       "type": "object",
       "additionalProperties": false,
-      "properties": { "Key": { "type": ["null", "string"] } }
+      "properties": {
+        "key": {
+          "type": "string"
+        }
+      }
     }
   }
 }

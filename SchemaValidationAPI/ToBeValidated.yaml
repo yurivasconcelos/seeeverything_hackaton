@@ -538,7 +538,7 @@
                   - entity-property: statsTotalMembers
                 operator: multiply
               - constant: 100
-            operator: multiply
+            operator: add
           filters:
             - field: statsCategoryName
               value: "One on One"
