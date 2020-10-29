@@ -21,25 +21,36 @@ app.get('/dashboardRawSchema', async (_, res) => {
     .catch((e) => console.log(e));
 });
 
-app.get('/dashboardSchema', async (req, res) => {
-  updateSchemaDashboardsService(req, res);
+app.get('/dataoutputs', async (req, res) => {
+  var dataOutput = require('./public/components/data-outputs-base.json');
+
+  fetchDashboardSchema(req, res).then((schema) => {
+    dataOutput.definitions['data-outputs'].items.properties = schema.properties;
+    dataOutput.definitions = {
+      ...dataOutput.definitions,
+      ...schema.definitions,
+    };
+    res.send(dataOutput);
+  });
 });
 
-const updateSchemaDashboardsService = async (_, res) => {
-  var result;
-  await axios
+const fetchDashboardSchema = async (_, res) => {
+  return await axios
     .get('http://localhost:5000/Schema')
     .then((response) => {
-      for (let definition in response.data.definitions) {
-        parseEnum(response.data.definitions[definition]);
-      }
-      parseCalculatedDataPointDto(response.data.definitions.DashboardCalculatedDataPointDto);
-      res.send(response.data);
+      parseDashboardSchema(response.data.definitions);
+      return response.data;
     })
     .catch(function (error) {
-      console.log(error);
+      res.send(error);
     });
-  return result;
+};
+
+const parseDashboardSchema = (definitions) => {
+  for (let definition in definitions) {
+    parseEnum(definitions[definition]);
+  }
+  parseCalculatedDataPointDto(definitions.DashboardCalculatedDataPointDto);
 };
 
 /* 
@@ -57,52 +68,18 @@ const parseEnum = (object) => {
     var lowerCaseValues = object['x-enumNames'].map((x) => {
       return x.charAt(0).toLowerCase() + x.slice(1);
     });
-
     object['enum'] = lowerCaseValues;
-
     delete object['x-enumNames'];
   }
 };
 
+//Use anyOf instead of allOf to avoid calculated data point (nested object) errors
 const parseCalculatedDataPointDto = (definition) => {
   if (Object.getOwnPropertyDescriptor(definition, 'allOf')) {
     definition['anyOf'] = definition['allOf'];
     delete definition['allOf'];
   }
 };
-
-app.get('/do', async (req, res) => {
-  var dataOutput = require('./public/components/data-outputs-base.json');
-
-  fetchDashboardSchema(req, res).then((x) => {
-    dataOutput.definitions['data-outputs'].items.properties = x.properties;
-    dataOutput.definitions = {
-      ...dataOutput.definitions,
-      ...x.definitions,
-    };
-    res.send(dataOutput);
-    // console.log(dataOutput);
-  });
-});
-
-const fetchDashboardSchema = async (_, res) => {
-  return await axios
-    .get('http://localhost:5000/Schema')
-    .then((response) => {
-      parseDashboardSchema(response.data.definitions)
-      return response.data;
-    })
-    .catch(function (error) {});
-};
-
-const parseDashboardSchema = (definitions) => {
-  for (let definition in definitions) {
-    parseEnum(definitions[definition]);
-  }
-  parseCalculatedDataPointDto(definitions.DashboardCalculatedDataPointDto);
-}
-
-
 
 app.listen(8000, () => {
   console.log('listening on 8000');
