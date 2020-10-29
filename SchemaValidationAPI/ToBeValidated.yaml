@@ -1,3 +1,82 @@
+- header:
+    icon: circle
+    date-filters:
+      - label: Last 12 months
+        period: Month
+        amount: 12
+        is-default: true
+        kind: TODAY_BACKWARDS
+      - label: Last 6 months
+        period: Month
+        amount: 6
+        kind: TODAY_BACKWARDS
+      - label: Last 3 months
+        period: Month
+        amount: 3
+        kind: TODAY_BACKWARDS
+      - label: Last month
+        period: Month
+        amount: 1
+        kind: TODAY_BACKWARDS
+      - label: Last week
+        period: Week
+        amount: 1
+        kind: TODAY_BACKWARDS
+      - label: Week to Date
+        kind: REPEATING_FREQUENCY
+        period: Week
+        amount: 1
+        max-num-repeats: 1
+        start-day: WEEK_START_DAY
+      - label: Calendar Month
+        kind: REPEATING_FREQUENCY
+        period: Month
+        amount: 1
+        max-num-repeats: 12
+        start-day: MONTH_START_DAY
+      - label: Quarterly
+        kind: REPEATING_FREQUENCY
+        period: Month
+        amount: 3
+        max-num-repeats: 4
+        start-day: FINANCIAL_QUARTER_START_DAY
+      - label: Financial Year
+        kind: REPEATING_FREQUENCY
+        period: Month
+        amount: 12
+        max-num-repeats: 2
+        start-day: FINANCIAL_YEAR_START_DAY
+      - label: Custom
+        kind: CUSTOM_RANGE
+    metrics:
+      - label: Goals and Actions
+        icon: book
+        data-key: goals-and-actions
+        value-formatter: number-complete
+      - label: Observation Coaching
+        icon: clipboardPerson
+        data-key: observation-coaching
+        value-formatter: number-complete
+      - label: One on One Coaching
+        icon: team
+        data-key: one-on-one-coaching
+        value-formatter: number-complete
+      - label: Specialist Coaching
+        icon: team
+        data-key: specialist-coaching
+        value-formatter: number-complete
+      - label: Induction Roadmap
+        icon: book
+        data-key: induction-roadmap
+        value-formatter: number-complete
+      - label: Workshops
+        icon: book
+        data-key: workshops
+        value-formatter: number-complete
+      - label: Coaching Prompts
+        icon: team
+        data-key: coaching-prompts
+        value-formatter: number-complete
 - section:
     title: Coaching Summary
     icon: team

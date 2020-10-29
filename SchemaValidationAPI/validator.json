@@ -14,10 +14,10 @@
         "additionalItems": true,
         "properties": {
           "header": {
-            "$ref": "components/header.json#/definitions/header"
+            "$ref": "public/components/header.json#/definitions/header"
           },
           "data-outputs": {
-            "$ref": "components/data-outputs.json#/definitions/data-outputs"
+            "$ref": "public/components/data-outputs.json#/definitions/data-outputs"
           }
         }
       }

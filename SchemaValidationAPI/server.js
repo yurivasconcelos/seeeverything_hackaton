@@ -2,38 +2,38 @@ var express = require('express');
 var axios = require('axios');
 var app = express();
 var validationSchema = require('./validator.json');
-var view = require('./view.json');
-const { response } = require('express');
+var view = require('./validator.json');
 
 app.use(express.static('public'));
 
-// //root of our application
-// app.get('/', async (req, res) => {
-//   var schemaManipulated = await updateSchemaDashboardsService();
-//   res.json(schemaManipulated.data);
-// });
-
-
-//root of our application
-app.get('/', async (req, res) => {
-  res.send(view)
+app.get('/', async (_, res) => {
+  console.log('hey');
+  res.send(view);
 });
 
+app.get('/dashboardRawSchema', async (_, res) => {
+  await axios
+    .get('http://localhost:5000/Schema')
+    .then((response) => {
+      console.log(response.data);
+      res.send(response.data);
+    })
+    .catch((e) => console.log(e));
+});
 
-const updateSchemaDashboardsService = async () => {
-  // fetch schema from the new end-point in the dashboard service
-  // manipulate a few things regarding the enums, and the calculated data points that are wrong.
-  // lower case all the enums as well
-  // update the validator.json
-  // add to the base string.
+app.get('/dashboardSchema', async (req, res) => {
+  updateSchemaDashboardsService(req, res);
+});
+
+const updateSchemaDashboardsService = async (_, res) => {
   var result;
   await axios
     .get('http://localhost:5000/Schema')
     .then((response) => {
       for (let definition in response.data.definitions) {
-        renameKey(response.data.definitions[definition]);
+        parseEnum(response.data.definitions[definition]);
       }
-      result = response;
+      res.send(response.data.definitions);
     })
     .catch(function (error) {
       console.log(error);
@@ -41,12 +41,17 @@ const updateSchemaDashboardsService = async () => {
   return result;
 };
 
-const renameKey = (object) => {
+/* 
+  NJsonSchema returns x-enumNames key containing the enum values
+  The YAML redhat vscode extension doesn't support this key, instead looks for the 'enum' key.
+  https://github.com/RicoSuter/NJsonSchema/issues/527 (example)
+
+   - replace x-enum with enum
+   - lower first character (to match dashboard yamls)
+*/ 
+const parseEnum = (object) => {
   if (Object.getOwnPropertyDescriptor(object, 'x-enumNames')) {
     delete object['enum'];
-
-    
-    //the dashboard templates uses the first character as lower case.
     var lowerCaseValues = object['x-enumNames'].map((x) => {
       return x.charAt(0).toLowerCase() + x.slice(1);
     });
