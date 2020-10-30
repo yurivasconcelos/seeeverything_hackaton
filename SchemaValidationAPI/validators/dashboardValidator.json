@@ -1,6 +1,6 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema",
-  "$id": "dashboard-template-validator",
+  "$id": "dashboard-validator",
   "type": "array",
   "items": {
     "$id": "#/items",
@@ -8,16 +8,16 @@
       {
         "$id": "#/items/anyOf/0",
         "type": "object",
-        "title": "The first anyOf schema",
-        "description": "Header",
+        "title": "Dashboard Validator Schema",
+        "description": "Validates Dashboard YAML",
         "default": {},
         "additionalItems": true,
         "properties": {
           "header": {
-            "$ref": "public/components/header.json#/definitions/header"
+            "$ref": "../public/components/header.json#/definitions/header"
           },
           "data-outputs": {
-            "$ref": "http://localhost:8000/dataoutputs#/definitions/data-outputs"
+            "$ref": "http://localhost:8000/dashboards/schema#/definitions/data-outputs"
           }
         }
       }
