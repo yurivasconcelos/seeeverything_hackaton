@@ -22,10 +22,9 @@ const configureRoutes = (router) => {
     });
   });
 
-
-  router.get('/baseSchema', async(_,res) => {
-    res.send('front-end schema');
-  })
+  router.get('/frontendSchema', async (_, res) => {
+    res.send('front-end schema not available yet');
+  });
 
   return router;
 };
@@ -45,7 +44,7 @@ const fetchDashboardServiceSchema = async (url) => {
     .get(`${url}/Schema`)
     .then((response) => {
       dashboardParser.parse(response.data.definitions);
-      console.log('mydata', response.data)
+      console.log('mydata', response.data);
       return response.data;
     })
     .catch((error) => {
