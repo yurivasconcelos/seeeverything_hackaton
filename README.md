@@ -16,4 +16,12 @@ https://github.com/seeeverything/service.dashboards/tree/yuri-test-schema
 or use nodemon, if you have it installed (npm i -g nodemon)
 >    nodemon server/server.js
 
+4- test
+using vscode, download the extension YAML (from redhat)
+add the following configuration to your settings.json
+```javascript  
+"yaml.schemas": {
+    "http://localhost:8000/dashboard": ["/*"]
+  },
+```
 
