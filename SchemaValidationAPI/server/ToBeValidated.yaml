@@ -618,7 +618,7 @@
         - key: person.membership-exists
           entity-property: membershipExists
     - id: team.grid.coaching-summary.assignedto
-      dashboard-summary-type: coaches
+      dashboard-summary-type: childrenOrMembersWhenNoChildren
       dashboard-summary-calculation-type: sum
       data-points:
         - key: person

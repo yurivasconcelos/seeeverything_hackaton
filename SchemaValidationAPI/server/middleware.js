@@ -3,7 +3,7 @@ const express = require('express')
 const configureMiddleware = (app) => {
   console.log('configuring middleware')
 
-  app.use(express.static('public/components'));
+  app.use(express.static('../public/components'));
 
   //cors
   app.use((_, res, next) => {

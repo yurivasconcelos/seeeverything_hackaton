@@ -8,7 +8,7 @@ const middleware = require('./middleware');
 middleware.configureMiddleware(app);
 
 //routes
-const dashboardRoutes = require('./controllers/dashboardController').configureRoutes(router);
+const dashboardRoutes = require('../controllers/dashboardController').configureRoutes(router);
 app.use('/dashboard', dashboardRoutes)
 
 app.get('/', (_,res) => {
