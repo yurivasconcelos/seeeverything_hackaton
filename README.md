@@ -1,4 +1,3 @@
-## Schema Validator API
 ![Image](https://i.ibb.co/Kx1VTMV/schema-Ap-I.png)
 
 1- Install packages
