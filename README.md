@@ -24,5 +24,3 @@ add the following configuration to your settings.json
     "http://localhost:8000/dashboard": ["/*"]
   },
 ```
-
-![node2](public/node2.png)
