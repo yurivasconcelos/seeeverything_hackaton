@@ -1,17 +1,23 @@
 //todo: use ES6 imports
 const express = require('express');
 const app = express();
+const router = express.Router();
+const port = process.env.port || 8000;
+
 
 //middleware
 const middleware = require('./middleware');
 middleware.configureMiddleware(app);
 
 //routes
-const dashboardController = require('./controllers/dashboardController');
-app.use('/dashboards', dashboardController)
+const dashboardRoutes = require('./controllers/dashboardController').configureRoutes(router);
+app.use('/dashboard', dashboardRoutes)
 
 
+app.get('/', (_,res) => {
+  res.send('Template Validator API 1.0')
+})
 
-app.listen(8000, () => {
-  console.log('listening on 8000');
+app.listen(port, () => {
+  console.log(`listening on ${port}`);
 });

@@ -1,7 +1,9 @@
 const express = require('express')
 
 const configureMiddleware = (app) => {
-  app.use(express.static('public'));
+  console.log('configuring middleware')
+
+  app.use(express.static('public/components'));
 
   app.use((_, res, next) => {
     res.header('Access-Control-Allow-Origin', '*');

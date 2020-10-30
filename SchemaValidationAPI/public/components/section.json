@@ -1,0 +1,39 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema",
+  "$id": "http://example.com/example.json",
+  "definitions": {
+    "section": {
+      "type": "object",
+      "title": "The root schema",
+      "description": "The root schema comprises the entire JSON document.",
+      "additionalItems": true,
+      "properties": {
+        "title": {
+          "$id": "#/items/anyOf/0/properties/section/properties/title",
+          "type": "string",
+          "title": "Section Tittle",
+          "description": "An explanation about the purpose of this instance.",
+          "default": "TitleHere",
+          "examples": ["Coaching Summary"]
+        },
+        "icon": { "$ref": "icon.json#/definitions/icon" },
+        "level": {
+          "$id": "#/items/anyOf/0/properties/section/properties/level",
+          "type": "string",
+          "title": "The level schema",
+          "description": "An explanation about the purpose of this instance.",
+          "default": "",
+          "examples": ["h1"]
+        },
+        "id": {
+          "$id": "#/items/anyOf/0/properties/section/properties/id",
+          "type": "string",
+          "title": "The id schema",
+          "description": "An explanation about the purpose of this instance.",
+          "default": "",
+          "examples": ["section.coaching-summary"]
+        }
+      }
+    }
+  }
+}

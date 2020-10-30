@@ -1,5 +1,5 @@
 - header:
-    icon: circle
+    icon: hey yo
     date-filters:
       - label: Last 12 months
         period: Month
@@ -78,8 +78,8 @@
         data-key: coaching-prompts
         value-formatter: number-complete
 - section:
-    title: Coaching Summary
-    icon: team
+    title: hey yo
+    icon: circle
     level: h1
     id: section.coaching-summary
 - grid-tools:

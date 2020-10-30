@@ -1,48 +1,53 @@
-const express = require('express');
 const axios = require('axios');
-const router = express.Router();
 const validator = require('../validators/dashboardValidator.json');
+const dashboardUrl = 'http://localhost:5000';
 
-const parseDashboardSchema = require('../parsers/dashboard-parser')
-  .parseDashboardSchema;
+const configureRoutes = (router) => {
+  const parseDashboardSchema = require('../parsers/dashboard-parser')
+    .parseDashboardSchema;
 
-router.get('/', (req, res) => {
-  res.send(validator);
-});
+  router.get('/', (_, res) => {
+    res.send(validator);
+  });
 
-router.get('/rawSchema', async (_, res) => {
-  await axios
-    .get('http://localhost:5000/schema')
-    .then((response) => {
-      console.log(response.data);
-      res.send(response.data);
-    })
-    .catch((e) => console.log(e));
-});
+  router.get('/backendSchemaRaw', async (_, res) => {
+    fetchDashboardServiceSchema(dashboardUrl).then((result) => {
+      res.send(result);
+    });
+  });
 
-router.get('/schema', async (req, res) => {
-  var dataOutput = require('../public/components/data-outputs-base.json');
+  router.get('/backendSchema', async (_, res) => {
+    var baseSchema = require('../public/components/data-outputs-base.json');
+    fetchDashboardServiceSchema(dashboardUrl).then((backEndSchema) => {
+      const dataOutputSchema = replaceSchemaWithBase(baseSchema, backEndSchema);
+      res.send(dataOutputSchema);
+    });
+  });
 
-  fetchDashboardSchema(req, res).then((schema) => {
+  const replaceSchemaWithBase = (base, schema) => {
+    var dataOutput = { ...base };
     dataOutput.definitions['data-outputs'].items.properties = schema.properties;
     dataOutput.definitions = {
       ...dataOutput.definitions,
       ...schema.definitions,
     };
-    res.send(dataOutput);
-  });
-});
+    return dataOutput;
+  };
 
-const fetchDashboardSchema = async (_, res) => {
-  return await axios
-    .get('http://localhost:5000/Schema')
-    .then((response) => {
-      parseDashboardSchema(response.data.definitions);
-      return response.data;
-    })
-    .catch(function (error) {
-      res.send(error);
-    });
+  const fetchDashboardServiceSchema = async (url) => {
+    return await axios
+      .get(`${url}/Schema`)
+      .then((response) => {
+        parseDashboardSchema(response.data.definitions);
+        return response.data;
+      })
+      .catch((error) => {
+        return error;
+      });
+  };
+  return router;
 };
 
-module.exports = router;
+module.exports = {
+  configureRoutes,
+};

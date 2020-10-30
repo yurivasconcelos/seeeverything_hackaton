@@ -14,10 +14,13 @@
         "additionalItems": true,
         "properties": {
           "header": {
-            "$ref": "../public/components/header.json#/definitions/header"
+            "$ref": "./header.json#/definitions/header"
+          },
+          "section": {
+            "$ref": "./section.json#/definitions/section"
           },
           "data-outputs": {
-            "$ref": "http://localhost:8000/dashboards/schema#/definitions/data-outputs"
+            "$ref": "./dashboard/backendSchema#/definitions/data-outputs"
           }
         }
       }
