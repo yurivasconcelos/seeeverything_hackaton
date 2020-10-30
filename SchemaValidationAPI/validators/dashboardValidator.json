@@ -19,6 +19,9 @@
           "section": {
             "$ref": "./section.json#/definitions/section"
           },
+          "grid": {
+            "$ref": "./grid.json#/definitions/grid"
+          },
           "data-outputs": {
             "$ref": "./dashboard/backendSchema#/definitions/data-outputs"
           }

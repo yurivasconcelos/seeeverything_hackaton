@@ -1,51 +1,49 @@
 const axios = require('axios');
 const validator = require('../validators/dashboardValidator.json');
-const dashboardUrl = 'http://localhost:5000';
+const baseSchema = require('../public/components/data-outputs-base.json');
+const dashboardParser = require('../parsers/dashboard-parser');
+const dashboardUrl = process.env.DASHBOARDURL || 'http://localhost:5000';
 
 const configureRoutes = (router) => {
-  const parseDashboardSchema = require('../parsers/dashboard-parser')
-    .parseDashboardSchema;
-
   router.get('/', (_, res) => {
     res.send(validator);
   });
 
   router.get('/backendSchemaRaw', async (_, res) => {
-    fetchDashboardServiceSchema(dashboardUrl).then((result) => {
-      res.send(result);
+    fetchDashboardServiceSchema(dashboardUrl).then((schema) => {
+      res.send(schema);
     });
   });
 
   router.get('/backendSchema', async (_, res) => {
-    var baseSchema = require('../public/components/data-outputs-base.json');
-    fetchDashboardServiceSchema(dashboardUrl).then((backEndSchema) => {
-      const dataOutputSchema = replaceSchemaWithBase(baseSchema, backEndSchema);
-      res.send(dataOutputSchema);
+    fetchDashboardServiceSchema(dashboardUrl).then((schema) => {
+      const backendSchema = replaceSchemaWithBase(baseSchema, schema);
+      res.send(backendSchema);
     });
   });
-
-  const replaceSchemaWithBase = (base, schema) => {
-    var dataOutput = { ...base };
-    dataOutput.definitions['data-outputs'].items.properties = schema.properties;
-    dataOutput.definitions = {
-      ...dataOutput.definitions,
-      ...schema.definitions,
-    };
-    return dataOutput;
-  };
-
-  const fetchDashboardServiceSchema = async (url) => {
-    return await axios
-      .get(`${url}/Schema`)
-      .then((response) => {
-        parseDashboardSchema(response.data.definitions);
-        return response.data;
-      })
-      .catch((error) => {
-        return error;
-      });
-  };
   return router;
+};
+
+const replaceSchemaWithBase = (base, schema) => {
+  var dataOutput = { ...base };
+  dataOutput.definitions['data-outputs'].items.properties = schema.properties;
+  dataOutput.definitions = {
+    ...dataOutput.definitions,
+    ...schema.definitions,
+  };
+  return dataOutput;
+};
+
+const fetchDashboardServiceSchema = async (url) => {
+  return await axios
+    .get(`${url}/Schema`)
+    .then((response) => {
+      parseDashboardSchema.parse(response.data.definitions);
+      return response.data;
+    })
+    .catch((error) => {
+      return error;
+    });
 };
 
 module.exports = {

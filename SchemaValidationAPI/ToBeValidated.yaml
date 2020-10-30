@@ -9,10 +9,10 @@
       - label: Last 6 months
         period: Month
         amount: 6
-        kind: TODAY_BACKWARDS
+        kind: TODAY_ONWARDS
       - label: Last 3 months
         period: Month
-        amount: 3
+        amount: 1
         kind: TODAY_BACKWARDS
       - label: Last month
         period: Month
@@ -112,7 +112,7 @@
     group: coaching-summary
     default-sort-order:
       id: team
-      direction: Ascending
+      direction: hey
     row-style:
       tags:
         - id: TeamDeactivated
@@ -136,7 +136,7 @@
         can-launch: true
       - id: one-on-one.sessions-per-team-member
         label: Sessions per Team Member
-        width: "1*"
+        width: '1*'
         border-right: false
         is-sortable: true
         is-filterable: false
@@ -146,23 +146,23 @@
         precision: 1
         trend-map:
           - icon: dot
-            color: "#C5C5C5"
+            color: '#C5C5C5'
             label: No Change
             min-number-inclusive: 0
             max-number-inclusive: 0
           - icon: arrowDropDown
-            color: "#737373"
+            color: '#737373'
             label: Trending Down
             min-number-inclusive: -999999
             max-number: 0
           - icon: arrowDropUp
-            color: "#207BB8"
+            color: '#207BB8'
             label: Trending Up
             min-number: 0
             max-number-inclusive: 999999
       - id: one-on-one.staff-coached-percent
         label: Staff Coached %
-        width: "1*"
+        width: '1*'
         border-right: true
         is-sortable: true
         is-filterable: false
@@ -173,23 +173,23 @@
         precision: 0
         trend-map:
           - icon: dot
-            color: "#C5C5C5"
+            color: '#C5C5C5'
             label: No Change
             min-number-inclusive: 0
             max-number-inclusive: 0
           - icon: arrowDropDown
-            color: "#737373"
+            color: '#737373'
             label: Trending Down
             min-number-inclusive: -100
             max-number: 0
           - icon: arrowDropUp
-            color: "#207BB8"
+            color: '#207BB8'
             label: Trending Up
             min-number: 0
             max-number-inclusive: 100
       - id: observations.observations-per-team-member
         label: Observations per Team Member
-        width: "1*"
+        width: '1*'
         border-right: false
         is-sortable: true
         is-filterable: false
@@ -199,23 +199,23 @@
         precision: 1
         trend-map:
           - icon: dot
-            color: "#C5C5C5"
+            color: '#C5C5C5'
             label: No Change
             min-number-inclusive: 0
             max-number-inclusive: 0
           - icon: arrowDropDown
-            color: "#737373"
+            color: '#737373'
             label: Trending Down
             min-number-inclusive: -999999
             max-number: 0
           - icon: arrowDropUp
-            color: "#207BB8"
+            color: '#207BB8'
             label: Trending Up
             min-number: 0
             max-number-inclusive: 999999
       - id: observations.staff-observed-percent
         label: Staff Observed %
-        width: "1*"
+        width: '1*'
         border-right: true
         is-sortable: true
         is-filterable: false
@@ -226,23 +226,23 @@
         precision: 0
         trend-map:
           - icon: dot
-            color: "#C5C5C5"
+            color: '#C5C5C5'
             label: No Change
             min-number-inclusive: 0
             max-number-inclusive: 0
           - icon: arrowDropDown
-            color: "#737373"
+            color: '#737373'
             label: Trending Down
             min-number-inclusive: -100
             max-number: 0
           - icon: arrowDropUp
-            color: "#207BB8"
+            color: '#207BB8'
             label: Trending Up
             min-number: 0
             max-number-inclusive: 100
       - id: goals.within-due-date
         label: Within Due Date
-        width: "*"
+        width: '*'
         border-right: false
         is-sortable: true
         is-filterable: false
@@ -253,23 +253,23 @@
         precision: 0
         trend-map:
           - icon: dot
-            color: "#C5C5C5"
+            color: '#C5C5C5'
             label: No Change
             min-number-inclusive: 0
             max-number-inclusive: 0
           - icon: arrowDropDown
-            color: "#737373"
+            color: '#737373'
             label: Trending Down
             min-number-inclusive: -100
             max-number: 0
           - icon: arrowDropUp
-            color: "#207BB8"
+            color: '#207BB8'
             label: Trending Up
             min-number: 0
             max-number-inclusive: 100
       - id: actions.within-due-date
         label: Within Due Date
-        width: "*"
+        width: '*'
         border-right: true
         is-sortable: true
         is-filterable: false
@@ -280,17 +280,17 @@
         precision: 0
         trend-map:
           - icon: dot
-            color: "#C5C5C5"
+            color: '#C5C5C5'
             label: No Change
             min-number-inclusive: 0
             max-number-inclusive: 0
           - icon: arrowDropDown
-            color: "#737373"
+            color: '#737373'
             label: Trending Down
             min-number-inclusive: -100
             max-number: 0
           - icon: arrowDropUp
-            color: "#207BB8"
+            color: '#207BB8'
             label: Trending Up
             min-number: 0
             max-number-inclusive: 100
@@ -318,7 +318,7 @@
         can-launch: true
       - id: sessions.overdue
         label: Overdue
-        width: "*"
+        width: '*'
         border-right: false
         is-sortable: true
         is-filterable: false
@@ -328,12 +328,12 @@
         click-through:
           grid-id: default.grid.sessions
         content-map:
-          - bg-color: "rgba(249, 194, 101, 0.25)"
+          - bg-color: 'rgba(249, 194, 101, 0.25)'
             min-number-inclusive: 1
             max-number-inclusive: 2147483647
       - id: sessions.in-progress
         label: In Progress
-        width: "*"
+        width: '*'
         border-right: false
         is-sortable: true
         is-filterable: false
@@ -344,7 +344,7 @@
           grid-id: default.grid.sessions
       - id: sessions.pending
         label: Pending
-        width: "*"
+        width: '*'
         border-right: false
         is-sortable: true
         is-filterable: false
@@ -355,7 +355,7 @@
           grid-id: default.grid.sessions
       - id: sessions.completed
         label: Completed
-        width: "*"
+        width: '*'
         border-right: true
         is-sortable: true
         is-filterable: false
@@ -366,7 +366,7 @@
           grid-id: default.grid.sessions
       - id: goals.overdue
         label: Overdue
-        width: "*"
+        width: '*'
         border-right: false
         is-sortable: true
         is-filterable: false
@@ -377,12 +377,12 @@
           grid-id: default.grid.goals-and-actions
           type: GOALS_AND_ACTIONS
         content-map:
-          - bg-color: "rgba(249, 194, 101, 0.25)"
+          - bg-color: 'rgba(249, 194, 101, 0.25)'
             min-number-inclusive: 1
             max-number-inclusive: 2147483647
       - id: goals.open
         label: Open
-        width: "*"
+        width: '*'
         border-right: false
         is-sortable: true
         is-filterable: false
@@ -394,7 +394,7 @@
           type: GOALS_AND_ACTIONS
       - id: goals.completed
         label: Completed
-        width: "*"
+        width: '*'
         border-right: true
         is-sortable: true
         is-filterable: false
@@ -406,7 +406,7 @@
           type: GOALS_AND_ACTIONS
       - id: actions.overdue
         label: Overdue
-        width: "*"
+        width: '*'
         border-right: false
         is-sortable: true
         is-filterable: false
@@ -417,12 +417,12 @@
           grid-id: default.grid.actions
           type: GOALS_AND_ACTIONS
         content-map:
-          - bg-color: "rgba(249, 194, 101, 0.25)"
+          - bg-color: 'rgba(249, 194, 101, 0.25)'
             min-number-inclusive: 1
             max-number-inclusive: 2147483647
       - id: actions.open
         label: Open
-        width: "*"
+        width: '*'
         border-right: false
         is-sortable: true
         is-filterable: false
@@ -434,7 +434,7 @@
           type: GOALS_AND_ACTIONS
       - id: actions.completed
         label: Completed
-        width: "*"
+        width: '*'
         border-right: true
         is-sortable: true
         is-filterable: false
@@ -445,7 +445,7 @@
           grid-id: default.grid.actions
           type: GOALS_AND_ACTIONS
       - id: person.membership-exists
-        width: "*"
+        width: '*'
         is-hidden: true
         is-sortable: true
 - grid:
@@ -466,7 +466,7 @@
         can-launch: true
       - id: sessions.overdue
         label: Overdue
-        width: "*"
+        width: '*'
         border-right: false
         is-sortable: true
         is-filterable: false
@@ -476,12 +476,12 @@
         click-through:
           grid-id: default.grid.sessions
         content-map:
-          - bg-color: "rgba(249, 194, 101, 0.25)"
+          - bg-color: 'rgba(249, 194, 101, 0.25)'
             min-number-inclusive: 1
             max-number-inclusive: 2147483647
       - id: sessions.in-progress
         label: In Progress
-        width: "*"
+        width: '*'
         border-right: false
         is-sortable: true
         is-filterable: false
@@ -492,7 +492,7 @@
           grid-id: default.grid.sessions
       - id: sessions.pending
         label: Pending
-        width: "*"
+        width: '*'
         border-right: false
         is-sortable: true
         is-filterable: false
@@ -503,7 +503,7 @@
           grid-id: default.grid.sessions
       - id: sessions.completed
         label: Completed
-        width: "*"
+        width: '*'
         border-right: true
         is-sortable: true
         is-filterable: false
@@ -527,7 +527,7 @@
             operator: divide
           filters:
             - field: statsCategoryName
-              value: "One on One"
+              value: 'One on One'
               query: must
           comparison-period: adjacentPrevious
         - key: one-on-one.staff-coached-percent
@@ -541,7 +541,7 @@
             operator: add
           filters:
             - field: statsCategoryName
-              value: "One on One"
+              value: 'One on One'
               query: must
           comparison-period: adjacentPrevious
         - key: observations.observations-per-team-member
@@ -552,7 +552,7 @@
             operator: divide
           filters:
             - field: statsCategoryName
-              value: "Observations"
+              value: 'Observations'
               query: must
           comparison-period: adjacentPrevious
         - key: observations.staff-observed-percent
@@ -566,7 +566,7 @@
             operator: multiply
           filters:
             - field: statsCategoryName
-              value: "Observations"
+              value: 'Observations'
               query: must
           comparison-period: adjacentPrevious
         - key: actions.within-due-date

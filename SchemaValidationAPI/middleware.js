@@ -5,6 +5,7 @@ const configureMiddleware = (app) => {
 
   app.use(express.static('public/components'));
 
+  //cors
   app.use((_, res, next) => {
     res.header('Access-Control-Allow-Origin', '*');
     res.header(
@@ -14,6 +15,7 @@ const configureMiddleware = (app) => {
     next();
   });
 
+  //body-parser
   app.use(express.json());
 };
 

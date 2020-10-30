@@ -1,4 +1,4 @@
-const parseDashboardSchema = (definitions) => {
+const parse = (definitions) => {
   for (let definition in definitions) {
     parseEnum(definitions[definition]);
   }
@@ -7,11 +7,10 @@ const parseDashboardSchema = (definitions) => {
 
 /* 
     NJsonSchema returns x-enumNames key so it needs to be parsed
-
     https://github.com/RicoSuter/NJsonSchema/issues/527
   
-     - replace x-enum with enum
-     - lower first character (to match dashboard yamls)
+     > replace x-enum with enum
+     > lower first character (to match dashboard yamls)
   */
 const parseEnum = (object) => {
   if (Object.getOwnPropertyDescriptor(object, 'x-enumNames')) {
@@ -34,5 +33,5 @@ const parseCalculatedDataPointDto = (definition) => {
 };
 
 module.exports = {
-    parseDashboardSchema
-}
+  parse,
+};
