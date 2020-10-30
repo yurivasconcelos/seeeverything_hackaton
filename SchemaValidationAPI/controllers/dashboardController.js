@@ -44,7 +44,6 @@ const fetchDashboardServiceSchema = async (url) => {
     .get(`${url}/Schema`)
     .then((response) => {
       dashboardParser.parse(response.data.definitions);
-      console.log('mydata', response.data);
       return response.data;
     })
     .catch((error) => {
