@@ -10,16 +10,14 @@ const configureRoutes = (router) => {
   });
 
   router.get('/backendSchemaRaw', async (_, res) => {
-    fetchDashboardServiceSchema(dashboardUrl).then((schema) => {
-      res.send(schema);
-    });
+    const schema = await fetchDashboardServiceSchema(dashboardUrl);
+    res.send(schema);
   });
 
   router.get('/backendSchema', async (_, res) => {
-    fetchDashboardServiceSchema(dashboardUrl).then((schema) => {
-      const backendSchema = replaceSchemaWithBase(baseSchema, schema);
-      res.send(backendSchema);
-    });
+    const schema = await fetchDashboardServiceSchema(dashboardUrl);
+    const backendSchema = replaceSchemaWithBase(baseSchema, schema);
+    res.send(backendSchema);
   });
 
   router.get('/frontendSchema', async (_, res) => {
@@ -40,15 +38,9 @@ const replaceSchemaWithBase = (base, schema) => {
 };
 
 const fetchDashboardServiceSchema = async (url) => {
-  return await axios
-    .get(`${url}/Schema`)
-    .then((response) => {
-      dashboardParser.parse(response.data.definitions);
-      return response.data;
-    })
-    .catch((error) => {
-      return error;
-    });
+  const response = await axios.get(`${url}/Schema`);
+  dashboardParser.parse(response.data.definitions);
+  return response.data;
 };
 
 module.exports = {
